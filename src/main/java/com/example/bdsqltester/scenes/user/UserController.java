@@ -3,9 +3,14 @@ import com.example.bdsqltester.datasources.DataSourceManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.bdsqltester.dtos.Menu;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +36,9 @@ public class UserController {
 
     @FXML
     private Label welcome_text;
+    
+    @FXML
+    private Button orderBtn;
 
     private ObservableList<Menu> menuList = FXCollections.observableArrayList();
 
@@ -73,6 +81,20 @@ public class UserController {
 
         } catch (SQLException e) {
             e.printStackTrace(); // Replace with proper logging or UI alert
+        }
+    }
+
+    public void createOrder(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bdsqltester/order-view.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) orderBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Order View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
