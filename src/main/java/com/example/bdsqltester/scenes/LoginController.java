@@ -65,7 +65,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
-        selectRole.getItems().addAll("User");
+        selectRole.getItems().addAll("User", "Admin Cabang", "Admin Pusat");
         selectRole.setValue("User");
     }
 
@@ -80,10 +80,27 @@ public class LoginController {
         try {
             if (verifyCredentials(username, password, role)) {
                 HelloApplication app = HelloApplication.getApplicationInstance();
-                app.setUserId(this.userId);// Store the user_id in HelloApplication
-                app.getPrimaryStage().setTitle("User View");
+                app.setUserId(this.userId);
 
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("user-view.fxml"));
+                String fxmlFile;
+
+                switch (role.toLowerCase()) {
+                    case "admin cabang":
+                        fxmlFile = "/com/example/bdsqltester/admin-cabang-view.fxml";
+                        app.getPrimaryStage().setTitle("Admin Cabang View");
+                        break;
+                    case "admin pusat":
+                        fxmlFile = "/com/example/bdsqltester/admin-pusat-view.fxml";
+                        app.getPrimaryStage().setTitle("Admin Pusat View");
+                        break;
+                    default:
+                        fxmlFile = "/com/example/bdsqltester/user-view.fxml";
+                        app.getPrimaryStage().setTitle("User View");
+                }
+
+                System.out.println("Loading FXML file: " + fxmlFile);
+
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
                 Scene scene = new Scene(loader.load());
                 app.getPrimaryStage().setScene(scene);
                 app.getPrimaryStage().sizeToScene();
