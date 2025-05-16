@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.bdsqltester.scenes.adminPusat.AdminPusatController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bdsqltester.scenes.adminPusat.AdminPusatController">
+   <children>
+      <Label fx:id="welcome_text" layoutX="32.0" layoutY="41.0" text="Welcome, Admin Pusat!">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="filter" layoutX="32.0" layoutY="83.0" prefHeight="25.0" prefWidth="97.0" />
+      <TableView fx:id="performance_table" layoutX="32.0" layoutY="131.0" prefHeight="200.0" prefWidth="551.0">
+        <columns>
+          <TableColumn fx:id="performance_table_no" prefWidth="68.79995346069336" text="No" />
+          <TableColumn fx:id="performance_table_branch" prefWidth="304.00001525878906" text="Branch" />
+            <TableColumn fx:id="performance_table_rating" prefWidth="178.4000244140625" text="Rating" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
