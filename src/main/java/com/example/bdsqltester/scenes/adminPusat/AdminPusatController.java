@@ -25,20 +25,20 @@ public class AdminPusatController {
     private TableView<Performance> performance_table;
 
     @FXML
-    private TableColumn<Menu, String> performance_table_branch;
+    private TableColumn<Performance, String> performance_table_branch;
 
     @FXML
-    private TableColumn<Menu, String> performance_table_rating;
+    private TableColumn<Performance, String> performance_table_rating;
 
     @FXML
-    private TableColumn<Menu, Long> performance_table_no;
+    private TableColumn<Performance, Long> performance_table_no;
 
     private ObservableList<Performance> performanceList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         // Set nomor urut di performance_table_no dengan custom cell factory
-        performance_table_no.setCellFactory(col -> new TableCell<Menu, Long>() {
+        performance_table_no.setCellFactory(col -> new TableCell<Performance, Long>() {
             @Override
             protected void updateItem(Long item, boolean empty) {
                 super.updateItem(item, empty);
@@ -50,16 +50,14 @@ public class AdminPusatController {
             }
         });
 
-        // Set cell value factory sesuai nama properti pada class Menu
         performance_table_branch.setCellValueFactory(new PropertyValueFactory<>("branchName"));
         performance_table_rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
-        // Load data dari database dan tampilkan di TableView
         loadPerformanceData();
     }
 
     private void loadPerformanceData() {
-        String query = "SELECT branch_name, rating FROM performance"; // Ganti sesuai nama tabel & kolom sebenarnya
+        String query = "SELECT branch_name, rating FROM performance";
 
         performanceList.clear();
 
