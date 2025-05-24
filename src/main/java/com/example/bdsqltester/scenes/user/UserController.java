@@ -86,12 +86,12 @@ public class UserController {
 
     public void createOrder(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bdsqltester/order-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bdsqltester/formOrder-view.fxml"));
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) orderBtn.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Order View");
+            stage.setTitle("Form Order");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
